@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect,render
 from carts.models import CartItem
 from .forms import OrderForm 
 from django.db import models
@@ -55,8 +55,8 @@ def place_order(request,total=0, quantity= 0):
             order_number = current_date + str(data.id)
             data.order_number = order_number
             data.save()
-            return redirect('checkout')
-            #return render(request, 'checkout.html')
+            # return redirect('checkout')
+            return render(request, 'checkout.html')
         
     else:
         return redirect('store')
